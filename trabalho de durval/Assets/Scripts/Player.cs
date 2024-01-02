@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Jump();
-        Attack();
+        AttackM();
     }
 
     private void FixedUpdate()
@@ -84,25 +84,23 @@ public class Player : MonoBehaviour
             
         }
     }
+    
 
-    void Attack()
+    void AttackM()
+    {
+        StartCoroutine("Attack");
+    }
+
+    IEnumerator Attack()
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
             IsFighting = true;
             anim.SetInteger("transition",3);
             
-        }
-    }
-
-    IEnumerator attack()
-    {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            IsFighting = true;
-            anim.SetInteger("transition",3);
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.70f);
             anim.SetInteger("transition",0);
+            IsFighting = false;
         }
     }
 

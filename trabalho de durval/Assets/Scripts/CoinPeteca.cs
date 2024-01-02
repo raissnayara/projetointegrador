@@ -8,11 +8,12 @@ public class CoinPeteca : MonoBehaviour
 {
 
     public int ScoreValue;
+    private AudioSource sound;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        sound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -21,12 +22,13 @@ public class CoinPeteca : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
+            sound.Play();
             GameController.instance.UpdateScore(ScoreValue);
-            Destroy(gameObject);
+            Destroy(gameObject,0.1f);
         }
     }
 }
