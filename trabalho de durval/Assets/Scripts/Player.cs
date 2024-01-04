@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     private Rigidbody2D rig;
 
     private Animator anim;
+
+    public AudioSource SoundJump;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +50,7 @@ public class Player : MonoBehaviour
         {
             if(!isJumping)
             {
+                
                 anim.SetInteger("transition",1);
             }
             
@@ -58,6 +61,7 @@ public class Player : MonoBehaviour
         {
             if (!isJumping)
             {
+                
                 anim.SetInteger("transition",1);
             }
             
@@ -77,9 +81,12 @@ public class Player : MonoBehaviour
         {
             if (!isJumping)
             {
+                
                 anim.SetInteger("transition",2);
+                SoundJump.Play();
                 rig.AddForce(new Vector2(0,Jumpforce), ForceMode2D.Impulse);
                 isJumping = true;
+                
             }
             
         }
